@@ -25,6 +25,10 @@ export default function Results({ answers, onRetakeQuiz }: ResultsProps) {
   });
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  useEffect(() => {
     if (majors && answers.length > 0) {
       const calculatedMatches = calculateMatches(answers, quizQuestions, majors);
       setMatches(calculatedMatches);
