@@ -105,12 +105,32 @@ export default function Results({ answers, onRetakeQuiz }: ResultsProps) {
           ))}
         </motion.div>
 
+        {/* Share Badge Section */}
+        {topMatches.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-center mb-8 sm:mb-12"
+          >
+            <Card className="bg-gradient-to-r from-[hsl(220,70%,25%)] to-[hsl(220,55%,35%)] text-white shadow-xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold mb-2">Share Your Results!</h3>
+                <p className="text-white/80 mb-4 sm:mb-6 max-w-xl mx-auto text-sm sm:text-base">
+                  Download a shareable badge of your top matches and share it with friends on social media
+                </p>
+                <ShareBadge matches={topMatches} />
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
+
         {/* Other Programs */}
         {otherMatches.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
           >
             <Card className="shadow-xl">
               <CardContent className="p-4 sm:p-6 md:p-8">
@@ -157,26 +177,6 @@ export default function Results({ answers, onRetakeQuiz }: ResultsProps) {
                     </div>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        )}
-
-        {/* Share Badge Section */}
-        {topMatches.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-center mt-8 sm:mt-12"
-          >
-            <Card className="bg-gradient-to-r from-[hsl(220,70%,25%)] to-[hsl(220,55%,35%)] text-white shadow-xl">
-              <CardContent className="p-4 sm:p-6 md:p-8">
-                <h3 className="text-xl sm:text-2xl font-bold mb-2">Share Your Results!</h3>
-                <p className="text-white/80 mb-4 sm:mb-6 max-w-xl mx-auto text-sm sm:text-base">
-                  Download a shareable badge of your top matches and share it with friends on social media
-                </p>
-                <ShareBadge matches={topMatches} />
               </CardContent>
             </Card>
           </motion.div>

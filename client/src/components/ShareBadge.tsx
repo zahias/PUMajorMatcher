@@ -16,8 +16,8 @@ interface BadgeContentProps {
 
 function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
   const scale = size === "export" ? 2.5 : 1;
-  const width = size === "export" ? 1080 : 320;
-  const height = size === "export" ? 1350 : 420;
+  const width = size === "export" ? 1080 : 380;
+  const height = size === "export" ? 1350 : 500;
   const match = matches[0];
   
   return (
@@ -239,21 +239,20 @@ export default function ShareBadge({ matches }: ShareBadgeProps) {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
-          variant="outline"
-          className="border-white/50 text-white hover:bg-white hover:text-[hsl(220,70%,25%)]"
+          className="bg-[hsl(45,90%,50%)] hover:bg-[hsl(45,85%,45%)] text-[hsl(220,70%,15%)] font-semibold"
           data-testid="button-create-badge"
         >
           <Share2 className="w-4 h-4 mr-2" />
           Create Shareable Badge
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-[95vw] sm:max-w-md mx-auto">
+      <DialogContent className="max-w-[95vw] sm:max-w-lg mx-auto">
         <DialogHeader>
           <DialogTitle className="text-[hsl(220,30%,15%)] text-lg">Your Major Match Badge</DialogTitle>
         </DialogHeader>
         
         <div className="flex flex-col items-center gap-4 py-2 max-h-[75vh] overflow-y-auto">
-          <div className="rounded-2xl overflow-hidden shadow-2xl w-full max-w-[320px] mx-auto">
+          <div className="rounded-2xl overflow-hidden shadow-2xl w-full max-w-[380px] mx-auto">
             <BadgeContent matches={matches} size="preview" />
           </div>
 
