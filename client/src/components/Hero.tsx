@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { GraduationCap, BookOpen, Users, Clock, ChevronRight } from "lucide-react";
+import { BookOpen, Users, Clock, ChevronRight, GraduationCap } from "lucide-react";
 
 interface HeroProps {
   onStartQuiz: () => void;
@@ -16,30 +16,7 @@ export default function Hero({ onStartQuiz }: HeroProps) {
         <div className="absolute bottom-20 right-10 w-64 sm:w-96 h-64 sm:h-96 bg-[hsl(45,90%,50%)] rounded-full blur-3xl"></div>
       </div>
 
-      <header className="relative z-20 px-4 sm:px-6 py-3 sm:py-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg flex items-center justify-center shadow-lg">
-              <GraduationCap className="w-5 h-5 sm:w-7 sm:h-7 text-[hsl(220,70%,25%)]" />
-            </div>
-            <div>
-              <h2 className="text-white font-bold text-sm sm:text-lg leading-tight">Phoenicia University</h2>
-              <p className="text-white/70 text-xs hidden sm:block">Major Matcher</p>
-            </div>
-          </div>
-          <a 
-            href="https://pu.edu.lb" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-white/80 hover:text-white text-xs sm:text-sm transition-colors"
-            data-testid="link-pu-website"
-          >
-            Visit pu.edu.lb
-          </a>
-        </div>
-      </header>
-
-      <div className="relative z-10 flex items-center justify-center min-h-[calc(100vh-80px)] px-4 sm:px-6 lg:px-8 py-8">
+      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 py-8">
         <div className="max-w-4xl mx-auto text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
