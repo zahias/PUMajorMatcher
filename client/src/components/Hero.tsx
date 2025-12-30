@@ -47,8 +47,8 @@ export default function Hero({ onStartQuiz }: HeroProps) {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight px-2"
           >
-            Find Your Perfect Major at{" "}
-            <span className="text-[hsl(45,90%,55%)]">Phoenicia University</span>
+            Find Your{" "}
+            <span className="text-[hsl(45,90%,55%)]">Perfect Major</span>
           </motion.h1>
           
           <motion.p
