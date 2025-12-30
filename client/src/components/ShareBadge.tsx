@@ -17,14 +17,14 @@ interface BadgeContentProps {
 function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
   const scale = size === "export" ? 2.5 : 1;
   const width = size === "export" ? 1080 : 380;
-  const height = size === "export" ? 1350 : 500;
+  const height = size === "export" ? 1350 : 540;
   const match = matches[0];
   
   return (
     <div 
       style={{
         width: `${width}px`,
-        minHeight: `${height}px`,
+        height: `${height}px`,
         background: 'linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 50%, #3d5a7f 100%)',
         borderRadius: size === "export" ? '0' : '16px',
         overflow: 'hidden',
@@ -222,6 +222,7 @@ export default function ShareBadge({ matches }: ShareBadgeProps) {
         useCORS: true,
         logging: false,
         width: 1080,
+        height: 1350,
       });
       
       const link = document.createElement('a');
