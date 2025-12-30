@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Hero from "@/components/Hero";
 import Quiz from "@/pages/quiz";
 import Results from "@/pages/results";
+import puLogoUrl from "@assets/images-1_1767097536565.jpg";
 import type { QuizAnswer } from "@/lib/matchingAlgorithm";
 
 type AppState = 'hero' | 'quiz' | 'results';
@@ -43,7 +44,7 @@ function App() {
               <div className="flex justify-between items-center h-16">
                 <div className="flex items-center cursor-pointer" onClick={handleBackToHome}>
                   <img 
-                    src="https://pu.edu.lb/sites/default/files/logo.png" 
+                    src={puLogoUrl}
                     alt="Phoenicia University Logo" 
                     className="h-10 w-auto"
                   />
