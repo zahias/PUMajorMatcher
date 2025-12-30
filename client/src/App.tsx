@@ -22,6 +22,7 @@ function App() {
   const handleQuizComplete = (answers: QuizAnswer[]) => {
     setQuizAnswers(answers);
     setCurrentState('results');
+    window.scrollTo(0, 0);
   };
 
   const handleRetakeQuiz = () => {
