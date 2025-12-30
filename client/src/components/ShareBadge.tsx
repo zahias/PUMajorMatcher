@@ -16,8 +16,8 @@ interface BadgeContentProps {
 
 function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
   const scale = size === "export" ? 2.5 : 1;
-  const width = size === "export" ? 1080 : 400;
-  const height = size === "export" ? 1350 : 500;
+  const width = size === "export" ? 1080 : 320;
+  const height = size === "export" ? 1350 : 420;
   const match = matches[0];
   
   return (
@@ -35,38 +35,38 @@ function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
         minHeight: '100%',
         display: 'flex',
         flexDirection: 'column',
-        padding: `${24 * scale}px`,
+        padding: `${20 * scale}px`,
         color: 'white',
         boxSizing: 'border-box',
       }}>
         <div style={{ 
           display: 'flex', 
           alignItems: 'center', 
-          gap: `${12 * scale}px`,
-          marginBottom: `${20 * scale}px`,
+          gap: `${10 * scale}px`,
+          marginBottom: `${16 * scale}px`,
         }}>
           <div style={{
-            width: `${40 * scale}px`,
-            height: `${40 * scale}px`,
+            width: `${36 * scale}px`,
+            height: `${36 * scale}px`,
             backgroundColor: 'white',
             borderRadius: `${8 * scale}px`,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: `${20 * scale}px`,
+            fontSize: `${18 * scale}px`,
           }}>
             🎓
           </div>
           <div>
             <p style={{ 
               fontWeight: 700, 
-              fontSize: `${14 * scale}px`, 
+              fontSize: `${13 * scale}px`, 
               lineHeight: 1.2,
               margin: 0,
             }}>Phoenicia University</p>
             <p style={{ 
               color: 'rgba(255,255,255,0.7)', 
-              fontSize: `${12 * scale}px`,
+              fontSize: `${11 * scale}px`,
               margin: 0,
             }}>Major Matcher</p>
           </div>
@@ -79,38 +79,38 @@ function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
           alignItems: 'center',
           justifyContent: 'center',
           textAlign: 'center',
-          marginBottom: `${16 * scale}px`,
+          marginBottom: `${12 * scale}px`,
         }}>
-          <div style={{ fontSize: `${64 * scale}px`, marginBottom: `${12 * scale}px` }}>
+          <div style={{ fontSize: `${56 * scale}px`, marginBottom: `${10 * scale}px` }}>
             {match.major.icon}
           </div>
           
           <p style={{ 
             color: 'rgba(255,255,255,0.8)', 
-            fontSize: `${11 * scale}px`, 
+            fontSize: `${10 * scale}px`, 
             textTransform: 'uppercase', 
             letterSpacing: '0.1em',
-            marginBottom: `${6 * scale}px`,
+            marginBottom: `${4 * scale}px`,
             margin: 0,
           }}>My Perfect Match</p>
           
           <h2 style={{ 
-            fontSize: `${20 * scale}px`, 
+            fontSize: `${18 * scale}px`, 
             fontWeight: 700, 
-            marginBottom: `${6 * scale}px`,
-            padding: `0 ${12 * scale}px`,
+            marginBottom: `${4 * scale}px`,
+            padding: `0 ${10 * scale}px`,
             lineHeight: 1.2,
-            margin: `0 0 ${6 * scale}px 0`,
+            margin: `0 0 ${4 * scale}px 0`,
           }}>
             {match.major.name}
           </h2>
           
           <p style={{ 
             color: '#f5c842', 
-            fontSize: `${12 * scale}px`, 
+            fontSize: `${11 * scale}px`, 
             fontWeight: 500,
-            marginBottom: `${16 * scale}px`,
-            margin: `0 0 ${16 * scale}px 0`,
+            marginBottom: `${12 * scale}px`,
+            margin: `0 0 ${12 * scale}px 0`,
           }}>
             {match.major.college}
           </p>
@@ -118,12 +118,12 @@ function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
           <div style={{
             backgroundColor: 'rgba(255,255,255,0.1)',
             backdropFilter: 'blur(10px)',
-            borderRadius: `${12 * scale}px`,
-            padding: `${12 * scale}px ${24 * scale}px`,
+            borderRadius: `${10 * scale}px`,
+            padding: `${10 * scale}px ${20 * scale}px`,
             border: '1px solid rgba(255,255,255,0.2)',
           }}>
             <div style={{ 
-              fontSize: `${40 * scale}px`, 
+              fontSize: `${36 * scale}px`, 
               fontWeight: 700, 
               color: '#f5c842',
               lineHeight: 1,
@@ -132,7 +132,7 @@ function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
             </div>
             <p style={{ 
               color: 'rgba(255,255,255,0.8)', 
-              fontSize: `${10 * scale}px`, 
+              fontSize: `${9 * scale}px`, 
               marginTop: `${2 * scale}px`,
               margin: `${2 * scale}px 0 0 0`,
             }}>Match Score</p>
@@ -143,24 +143,24 @@ function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
           <div style={{
             backgroundColor: 'rgba(255,255,255,0.05)',
             borderRadius: `${8 * scale}px`,
-            padding: `${12 * scale}px`,
-            marginBottom: `${12 * scale}px`,
+            padding: `${10 * scale}px`,
+            marginBottom: `${10 * scale}px`,
             border: '1px solid rgba(255,255,255,0.1)',
           }}>
             <p style={{ 
               color: 'rgba(255,255,255,0.7)', 
-              fontSize: `${9 * scale}px`, 
-              margin: `0 0 ${8 * scale}px 0`,
+              fontSize: `${8 * scale}px`, 
+              margin: `0 0 ${6 * scale}px 0`,
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
             }}>Also a great fit:</p>
-            <div style={{ display: 'flex', gap: `${8 * scale}px`, flexDirection: 'column' }}>
+            <div style={{ display: 'flex', gap: `${6 * scale}px`, flexDirection: 'column' }}>
               {matches.slice(1, 3).map((m, idx) => (
-                <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: `${8 * scale}px` }}>
-                  <span style={{ fontSize: `${20 * scale}px` }}>{m.major.icon}</span>
+                <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: `${6 * scale}px` }}>
+                  <span style={{ fontSize: `${18 * scale}px` }}>{m.major.icon}</span>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <p style={{ 
-                      fontSize: `${10 * scale}px`, 
+                      fontSize: `${9 * scale}px`, 
                       fontWeight: 600, 
                       margin: 0,
                       overflow: 'hidden',
@@ -168,10 +168,10 @@ function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
                       whiteSpace: 'nowrap',
                     }}>{m.major.name}</p>
                     <p style={{ 
-                      fontSize: `${9 * scale}px`, 
+                      fontSize: `${8 * scale}px`, 
                       color: '#f5c842', 
                       margin: 0,
-                    }}>{m.matchPercentage}%</p>
+                    }}>{m.matchPercentage}% match</p>
                   </div>
                 </div>
               ))}
@@ -181,21 +181,21 @@ function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
 
         <div style={{
           textAlign: 'center',
-          paddingTop: `${12 * scale}px`,
+          paddingTop: `${10 * scale}px`,
           borderTop: '1px solid rgba(255,255,255,0.2)',
         }}>
           <p style={{ 
             color: 'rgba(255,255,255,0.6)', 
-            fontSize: `${10 * scale}px`,
-            marginBottom: `${3 * scale}px`,
-            margin: `0 0 ${3 * scale}px 0`,
+            fontSize: `${9 * scale}px`,
+            marginBottom: `${2 * scale}px`,
+            margin: `0 0 ${2 * scale}px 0`,
           }}>Find your perfect major at</p>
           <p style={{ 
             color: '#f5c842', 
             fontWeight: 700, 
-            fontSize: `${12 * scale}px`,
+            fontSize: `${11 * scale}px`,
             margin: 0,
-          }}>pu.edu.lb/major-matcher</p>
+          }}>pu.edu.lb</p>
         </div>
       </div>
     </div>
@@ -247,30 +247,28 @@ export default function ShareBadge({ matches }: ShareBadgeProps) {
           Create Shareable Badge
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-lg">
+      <DialogContent className="max-w-[95vw] sm:max-w-md mx-auto">
         <DialogHeader>
-          <DialogTitle className="text-[hsl(220,30%,15%)]">Your Major Match Badges</DialogTitle>
+          <DialogTitle className="text-[hsl(220,30%,15%)] text-lg">Your Major Match Badge</DialogTitle>
         </DialogHeader>
         
-        <div className="flex flex-col items-center gap-6 py-4 max-h-[80vh] overflow-y-auto">
-          <div className="rounded-2xl overflow-hidden shadow-2xl">
+        <div className="flex flex-col items-center gap-4 py-2 max-h-[75vh] overflow-y-auto">
+          <div className="rounded-2xl overflow-hidden shadow-2xl w-full max-w-[320px] mx-auto">
             <BadgeContent matches={matches} size="preview" />
           </div>
 
-          <div className="flex gap-3">
-            <Button
-              onClick={downloadBadge}
-              disabled={isDownloading}
-              className="bg-[hsl(220,70%,25%)] hover:bg-[hsl(220,70%,20%)] text-white"
-              data-testid="button-download-badge"
-            >
-              <Download className="w-4 h-4 mr-2" />
-              {isDownloading ? 'Downloading...' : 'Download Badge'}
-            </Button>
-          </div>
+          <Button
+            onClick={downloadBadge}
+            disabled={isDownloading}
+            className="bg-[hsl(220,70%,25%)] hover:bg-[hsl(220,70%,20%)] text-white w-full sm:w-auto"
+            data-testid="button-download-badge"
+          >
+            <Download className="w-4 h-4 mr-2" />
+            {isDownloading ? 'Downloading...' : 'Download Badge'}
+          </Button>
 
-          <p className="text-gray-500 text-sm text-center max-w-sm">
-            Download your badge showing all your top matches and share it on Instagram, Facebook, Twitter, or WhatsApp!
+          <p className="text-gray-500 text-xs sm:text-sm text-center px-2">
+            Share your badge on Instagram, Facebook, Twitter, or WhatsApp!
           </p>
         </div>
       </DialogContent>

@@ -57,24 +57,24 @@ export default function QuizQuestionComponent({
       transition={{ duration: 0.3 }}
     >
       <Card className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300">
-        <CardContent className="p-8">
-          <div className="text-center mb-8">
-            <div className="text-6xl mb-4">{question.icon}</div>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+        <CardContent className="p-4 sm:p-6 md:p-8">
+          <div className="text-center mb-6 sm:mb-8">
+            <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4">{question.icon}</div>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-2 sm:mb-4 px-2">
               {question.title}
             </h2>
-            <p className="text-gray-600">
+            <p className="text-sm sm:text-base text-gray-600 px-2">
               {question.subtitle}
             </p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {question.type === 'multiple-choice' && question.options?.map((option, index) => {
               const isSelected = answer?.value === option.value;
               return (
                 <Card
                   key={index}
-                  className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
+                  className={`cursor-pointer transition-all duration-200 hover:shadow-md active:scale-[0.98] ${
                     isSelected 
                       ? 'border-[hsl(220,70%,35%)] bg-blue-50 shadow-md' 
                       : 'border-gray-200 hover:border-[hsl(220,70%,45%)]'
@@ -82,9 +82,9 @@ export default function QuizQuestionComponent({
                   onClick={() => handleOptionSelect(option)}
                   data-testid={`option-${question.id}-${index}`}
                 >
-                  <CardContent className="p-4">
+                  <CardContent className="p-3 sm:p-4">
                     <div className="flex items-center">
-                      <div className={`w-6 h-6 rounded-full border-2 mr-4 flex items-center justify-center transition-colors ${
+                      <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 mr-3 sm:mr-4 flex items-center justify-center transition-colors flex-shrink-0 ${
                         isSelected 
                           ? 'border-[hsl(220,70%,35%)] bg-[hsl(220,70%,35%)]' 
                           : 'border-gray-300'
@@ -93,7 +93,7 @@ export default function QuizQuestionComponent({
                           <span className="text-white text-xs">✓</span>
                         )}
                       </div>
-                      <span className="text-lg">{option.text}</span>
+                      <span className="text-sm sm:text-base md:text-lg">{option.text}</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -101,7 +101,7 @@ export default function QuizQuestionComponent({
             })}
 
             {question.type === 'slider' && (
-              <div className="px-6">
+              <div className="px-2 sm:px-6">
                 <div className="mb-6">
                   <Slider
                     min={question.min}
@@ -112,33 +112,34 @@ export default function QuizQuestionComponent({
                     className="w-full"
                   />
                 </div>
-                <div className="flex justify-between text-sm text-gray-600">
-                  <span>{question.labels?.[0]}</span>
+                <div className="flex justify-between text-xs sm:text-sm text-gray-600">
+                  <span className="max-w-[30%] text-left">{question.labels?.[0]}</span>
                   <span className="font-medium text-[hsl(220,70%,35%)]">
                     Value: {sliderValue[0]}
                   </span>
-                  <span>{question.labels?.[1]}</span>
+                  <span className="max-w-[30%] text-right">{question.labels?.[1]}</span>
                 </div>
               </div>
             )}
           </div>
 
-          <div className="flex justify-between items-center mt-8">
+          <div className="flex justify-between items-center mt-6 sm:mt-8 gap-2">
             <Button
               onClick={onPrevious}
               disabled={!canGoBack}
               variant="outline"
-              className="px-6 py-3 border-[hsl(220,70%,35%)] text-[hsl(220,70%,35%)]"
+              className="px-3 sm:px-6 py-2 sm:py-3 border-[hsl(220,70%,35%)] text-[hsl(220,70%,35%)] text-sm sm:text-base"
               data-testid="button-previous"
             >
-              ← Previous
+              <span className="hidden sm:inline">← Previous</span>
+              <span className="sm:hidden">← Back</span>
             </Button>
             
-            <div className="flex space-x-2">
+            <div className="flex space-x-1 sm:space-x-2">
               {Array.from({ length: 3 }, (_, i) => (
                 <span
                   key={i}
-                  className={`inline-block w-3 h-3 rounded-full ${
+                  className={`inline-block w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
                     i === 0 ? 'bg-[hsl(220,70%,35%)]' : 'bg-gray-300'
                   }`}
                 />
@@ -148,10 +149,11 @@ export default function QuizQuestionComponent({
             <Button
               onClick={onNext}
               disabled={!canGoNext}
-              className="px-6 py-3 bg-[hsl(220,70%,25%)] hover:bg-[hsl(220,70%,20%)]"
+              className="px-3 sm:px-6 py-2 sm:py-3 bg-[hsl(220,70%,25%)] hover:bg-[hsl(220,70%,20%)] text-sm sm:text-base"
               data-testid="button-next"
             >
-              {isLast ? 'Get Results' : 'Next'} →
+              <span className="hidden sm:inline">{isLast ? 'Get Results' : 'Next'} →</span>
+              <span className="sm:hidden">{isLast ? 'Results' : 'Next'} →</span>
             </Button>
           </div>
         </CardContent>
