@@ -119,22 +119,22 @@ function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
             backgroundColor: 'rgba(255,255,255,0.1)',
             backdropFilter: 'blur(10px)',
             borderRadius: `${10 * scale}px`,
-            padding: `${10 * scale}px ${20 * scale}px`,
+            padding: `${14 * scale}px ${24 * scale}px`,
             border: '1px solid rgba(255,255,255,0.2)',
           }}>
             <div style={{ 
               fontSize: `${36 * scale}px`, 
               fontWeight: 700, 
               color: '#f5c842',
-              lineHeight: 1,
+              lineHeight: 1.2,
+              marginBottom: `${6 * scale}px`,
             }}>
               {match.matchPercentage}%
             </div>
             <p style={{ 
               color: 'rgba(255,255,255,0.8)', 
               fontSize: `${9 * scale}px`, 
-              marginTop: `${2 * scale}px`,
-              margin: `${2 * scale}px 0 0 0`,
+              margin: 0,
             }}>Match Score</p>
           </div>
         </div>
