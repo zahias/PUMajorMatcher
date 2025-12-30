@@ -15,11 +15,11 @@ export default function MajorCard({ match, rank, isTopMatch = false }: MajorCard
 
   return (
     <Card className={`transition-all duration-300 hover:shadow-lg ${
-      isTopMatch ? 'ring-4 ring-indigo-500 shadow-xl' : ''
-    }`}>
+      isTopMatch ? 'ring-4 ring-[hsl(220,70%,35%)] shadow-xl' : ''
+    }`} data-testid={`card-major-${match.major.key}`}>
       <CardContent className="p-6 text-center">
         {isTopMatch && (
-          <Badge className="bg-indigo-600 text-white text-sm font-bold mb-4">
+          <Badge className="bg-[hsl(220,70%,25%)] text-white text-sm font-bold mb-4">
             BEST MATCH
           </Badge>
         )}
@@ -35,7 +35,7 @@ export default function MajorCard({ match, rank, isTopMatch = false }: MajorCard
           {major.name}
         </h3>
         
-        <p className="text-sm text-indigo-600 font-medium mb-4">
+        <p className="text-sm text-[hsl(220,70%,35%)] font-medium mb-4">
           {major.college}
         </p>
         
@@ -69,7 +69,7 @@ export default function MajorCard({ match, rank, isTopMatch = false }: MajorCard
             <ul className="text-xs text-gray-600 text-left space-y-1">
               {reasons.slice(0, 2).map((reason, index) => (
                 <li key={index} className="flex items-start">
-                  <span className="text-indigo-500 mr-2">•</span>
+                  <span className="text-[hsl(220,70%,35%)] mr-2">•</span>
                   {reason}
                 </li>
               ))}
@@ -80,7 +80,7 @@ export default function MajorCard({ match, rank, isTopMatch = false }: MajorCard
         <div className="mb-4">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm font-medium text-gray-700">Match</span>
-            <span className="text-sm font-bold text-indigo-600">
+            <span className="text-sm font-bold text-[hsl(220,70%,35%)]">
               {matchPercentage}%
             </span>
           </div>
@@ -92,11 +92,10 @@ export default function MajorCard({ match, rank, isTopMatch = false }: MajorCard
         
         <Button
           asChild
-          className="w-full bg-indigo-600 hover:bg-indigo-700"
+          className="w-full bg-[hsl(220,70%,25%)] hover:bg-[hsl(220,70%,20%)]"
         >
-          <a href={major.url} target="_blank" rel="noopener noreferrer">
-            Learn More
-            <i className="fas fa-external-link-alt ml-2 text-xs"></i>
+          <a href={major.url} target="_blank" rel="noopener noreferrer" data-testid={`link-learn-more-${major.key}`}>
+            Learn More →
           </a>
         </Button>
       </CardContent>

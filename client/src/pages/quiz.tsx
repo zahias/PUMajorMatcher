@@ -42,7 +42,7 @@ export default function Quiz({ onComplete }: QuizProps) {
   const isLast = currentQuestionIndex === quizQuestions.length - 1;
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-16">
+    <section className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <QuizProgress 
           currentQuestion={currentQuestionIndex + 1}

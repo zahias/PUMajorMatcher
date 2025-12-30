@@ -76,20 +76,21 @@ export default function QuizQuestionComponent({
                   key={index}
                   className={`cursor-pointer transition-all duration-200 hover:shadow-md ${
                     isSelected 
-                      ? 'border-indigo-500 bg-indigo-50 shadow-md' 
-                      : 'border-gray-200 hover:border-indigo-300'
+                      ? 'border-[hsl(220,70%,35%)] bg-blue-50 shadow-md' 
+                      : 'border-gray-200 hover:border-[hsl(220,70%,45%)]'
                   }`}
                   onClick={() => handleOptionSelect(option)}
+                  data-testid={`option-${question.id}-${index}`}
                 >
                   <CardContent className="p-4">
                     <div className="flex items-center">
                       <div className={`w-6 h-6 rounded-full border-2 mr-4 flex items-center justify-center transition-colors ${
                         isSelected 
-                          ? 'border-indigo-500 bg-indigo-500' 
+                          ? 'border-[hsl(220,70%,35%)] bg-[hsl(220,70%,35%)]' 
                           : 'border-gray-300'
                       }`}>
                         {isSelected && (
-                          <i className="fas fa-check text-white text-xs"></i>
+                          <span className="text-white text-xs">✓</span>
                         )}
                       </div>
                       <span className="text-lg">{option.text}</span>
@@ -113,7 +114,7 @@ export default function QuizQuestionComponent({
                 </div>
                 <div className="flex justify-between text-sm text-gray-600">
                   <span>{question.labels?.[0]}</span>
-                  <span className="font-medium text-indigo-600">
+                  <span className="font-medium text-[hsl(220,70%,35%)]">
                     Value: {sliderValue[0]}
                   </span>
                   <span>{question.labels?.[1]}</span>
@@ -127,10 +128,10 @@ export default function QuizQuestionComponent({
               onClick={onPrevious}
               disabled={!canGoBack}
               variant="outline"
-              className="px-6 py-3"
+              className="px-6 py-3 border-[hsl(220,70%,35%)] text-[hsl(220,70%,35%)]"
+              data-testid="button-previous"
             >
-              <i className="fas fa-arrow-left mr-2"></i>
-              Previous
+              ← Previous
             </Button>
             
             <div className="flex space-x-2">
@@ -138,7 +139,7 @@ export default function QuizQuestionComponent({
                 <span
                   key={i}
                   className={`inline-block w-3 h-3 rounded-full ${
-                    i === 0 ? 'bg-indigo-500' : 'bg-gray-300'
+                    i === 0 ? 'bg-[hsl(220,70%,35%)]' : 'bg-gray-300'
                   }`}
                 />
               ))}
@@ -147,10 +148,10 @@ export default function QuizQuestionComponent({
             <Button
               onClick={onNext}
               disabled={!canGoNext}
-              className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700"
+              className="px-6 py-3 bg-[hsl(220,70%,25%)] hover:bg-[hsl(220,70%,20%)]"
+              data-testid="button-next"
             >
-              {isLast ? 'Get Results' : 'Next'}
-              <i className={`fas ${isLast ? 'fa-check' : 'fa-arrow-right'} ml-2`}></i>
+              {isLast ? 'Get Results' : 'Next'} →
             </Button>
           </div>
         </CardContent>
