@@ -212,8 +212,8 @@ export default function ShareBadge({ matches }: ShareBadgeProps) {
       
       if (!exportRef.current) return;
       
-      const elementWidth = exportRef.current.offsetWidth;
-      const elementHeight = exportRef.current.offsetHeight;
+      const elementWidth = exportRef.current.scrollWidth;
+      const elementHeight = exportRef.current.scrollHeight;
       
       const canvas = await html2canvas(exportRef.current, {
         backgroundColor: '#1e3a5f',
@@ -222,6 +222,8 @@ export default function ShareBadge({ matches }: ShareBadgeProps) {
         logging: false,
         width: elementWidth,
         height: elementHeight,
+        windowWidth: elementWidth,
+        windowHeight: elementHeight,
       });
       
       const link = document.createElement('a');
@@ -275,9 +277,11 @@ export default function ShareBadge({ matches }: ShareBadgeProps) {
       <div 
         ref={exportRef}
         style={{
-          position: 'fixed',
-          left: '-9999px',
-          top: '-9999px',
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          opacity: 0,
+          zIndex: -9999,
           pointerEvents: 'none',
         }}
         aria-hidden="true"
