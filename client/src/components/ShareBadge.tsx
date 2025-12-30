@@ -246,13 +246,13 @@ export default function ShareBadge({ matches }: ShareBadgeProps) {
           Create Shareable Badge
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-[95vw] sm:max-w-lg mx-auto">
+      <DialogContent className="max-w-[95vw] sm:max-w-lg mx-auto max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-[hsl(220,30%,15%)] text-lg">Your Major Match Badge</DialogTitle>
         </DialogHeader>
         
-        <div className="flex flex-col items-center gap-4 py-2 max-h-[75vh] overflow-y-auto">
-          <div className="rounded-2xl overflow-hidden shadow-2xl w-full max-w-[380px] mx-auto">
+        <div className="flex flex-col items-center gap-4 py-2">
+          <div className="rounded-2xl shadow-2xl w-full max-w-[380px] mx-auto">
             <BadgeContent matches={matches} size="preview" />
           </div>
 
