@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { GraduationCap, BookOpen, Users, Clock, ChevronRight, Sparkles } from "lucide-react";
+import { GraduationCap, BookOpen, Users, Clock, ChevronRight } from "lucide-react";
 
 interface HeroProps {
   onStartQuiz: () => void;
@@ -41,18 +41,6 @@ export default function Hero({ onStartQuiz }: HeroProps) {
 
       <div className="relative z-10 flex items-center justify-center min-h-[calc(100vh-80px)] px-4 sm:px-6 lg:px-8 py-8">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-4 sm:mb-6"
-          >
-            <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-white/10 backdrop-blur-sm text-white/90 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium border border-white/20">
-              <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-[hsl(45,90%,55%)]" />
-              Free Career Discovery Tool
-            </span>
-          </motion.div>
-          
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
