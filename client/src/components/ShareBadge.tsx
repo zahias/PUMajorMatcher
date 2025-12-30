@@ -207,10 +207,14 @@ export default function ShareBadge({ matches }: ShareBadgeProps) {
     setIsDownloading(true);
     
     try {
-      await new Promise(resolve => requestAnimationFrame(resolve));
-      await new Promise(resolve => setTimeout(resolve, 100));
-      
       if (!exportRef.current) return;
+      
+      // Temporarily make visible for capture
+      const originalStyle = exportRef.current.style.cssText;
+      exportRef.current.style.cssText = 'position: fixed; left: 0; top: 0; z-index: 9999;';
+      
+      await new Promise(resolve => requestAnimationFrame(resolve));
+      await new Promise(resolve => setTimeout(resolve, 150));
       
       const elementWidth = exportRef.current.scrollWidth;
       const elementHeight = exportRef.current.scrollHeight;
@@ -222,9 +226,10 @@ export default function ShareBadge({ matches }: ShareBadgeProps) {
         logging: false,
         width: elementWidth,
         height: elementHeight,
-        windowWidth: elementWidth,
-        windowHeight: elementHeight,
       });
+      
+      // Restore hidden state
+      exportRef.current.style.cssText = originalStyle;
       
       const link = document.createElement('a');
       link.download = `pu-major-match-${matches[0].major.key}.png`;
@@ -277,11 +282,9 @@ export default function ShareBadge({ matches }: ShareBadgeProps) {
       <div 
         ref={exportRef}
         style={{
-          position: 'absolute',
-          left: 0,
+          position: 'fixed',
+          left: '-9999px',
           top: 0,
-          opacity: 0,
-          zIndex: -9999,
           pointerEvents: 'none',
         }}
         aria-hidden="true"
