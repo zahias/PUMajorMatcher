@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import MajorCard from "@/components/MajorCard";
+import ShareBadge from "@/components/ShareBadge";
 import { motion } from "framer-motion";
 import { calculateMatches, generateSessionId } from "@/lib/matchingAlgorithm";
 import { quizQuestions } from "@/lib/quizData";
@@ -47,30 +48,6 @@ export default function Results({ answers, onRetakeQuiz }: ResultsProps) {
       });
     } catch (error) {
       console.error('Failed to save quiz results:', error);
-    }
-  };
-
-  const handleShare = async () => {
-    const shareData = {
-      title: 'My PU Major Match Results',
-      text: `I just found my perfect major at Phoenicia University! My top match is ${matches[0]?.major.name}. Take the quiz to find yours!`,
-      url: window.location.href
-    };
-
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-      } catch (error) {
-        console.error('Error sharing:', error);
-      }
-    } else {
-      // Fallback: copy to clipboard
-      try {
-        await navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
-        alert('Results link copied to clipboard!');
-      } catch (error) {
-        console.error('Failed to copy to clipboard:', error);
-      }
     }
   };
 
@@ -182,6 +159,26 @@ export default function Results({ answers, onRetakeQuiz }: ResultsProps) {
           </motion.div>
         )}
 
+        {/* Share Badge Section */}
+        {topMatches.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-center mt-12"
+          >
+            <Card className="bg-gradient-to-r from-[hsl(220,70%,25%)] to-[hsl(220,55%,35%)] text-white shadow-xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold mb-2">Share Your Results!</h3>
+                <p className="text-white/80 mb-6 max-w-xl mx-auto">
+                  Download a shareable badge of your top match and share it with friends on social media
+                </p>
+                <ShareBadge match={topMatches[0]} />
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
+
         {/* Action Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -196,13 +193,6 @@ export default function Results({ answers, onRetakeQuiz }: ResultsProps) {
             data-testid="button-retake-quiz"
           >
             Retake Quiz
-          </Button>
-          <Button
-            onClick={handleShare}
-            className="w-full sm:w-auto bg-[hsl(45,90%,50%)] hover:bg-[hsl(45,85%,45%)] text-[hsl(220,70%,15%)] px-8 py-3"
-            data-testid="button-share-results"
-          >
-            Share Results
           </Button>
           <Button
             asChild
