@@ -15,20 +15,24 @@ interface BadgeContentProps {
 }
 
 function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
-  const scale = size === "export" ? 2.84 : 1;
+  const scale = size === "export" ? 2.5 : 1;
   const width = size === "export" ? 1080 : 380;
+  const height = size === "export" ? 1350 : 500;
   const match = matches[0];
   
   return (
     <div 
       style={{
         width: `${width}px`,
+        minHeight: `${height}px`,
         background: 'linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 50%, #3d5a7f 100%)',
         borderRadius: size === "export" ? '0' : '16px',
+        overflow: 'hidden',
         fontFamily: 'system-ui, -apple-system, sans-serif',
       }}
     >
       <div style={{
+        minHeight: '100%',
         display: 'flex',
         flexDirection: 'column',
         padding: `${20 * scale}px`,
@@ -207,29 +211,18 @@ export default function ShareBadge({ matches }: ShareBadgeProps) {
     setIsDownloading(true);
     
     try {
-      if (!exportRef.current) return;
-      
-      // Temporarily make visible for capture
-      const originalStyle = exportRef.current.style.cssText;
-      exportRef.current.style.cssText = 'position: fixed; left: 0; top: 0; z-index: 9999;';
-      
       await new Promise(resolve => requestAnimationFrame(resolve));
-      await new Promise(resolve => setTimeout(resolve, 150));
+      await new Promise(resolve => setTimeout(resolve, 100));
       
-      const elementWidth = exportRef.current.scrollWidth;
-      const elementHeight = exportRef.current.scrollHeight;
+      if (!exportRef.current) return;
       
       const canvas = await html2canvas(exportRef.current, {
         backgroundColor: '#1e3a5f',
         scale: 1,
         useCORS: true,
         logging: false,
-        width: elementWidth,
-        height: elementHeight,
+        width: 1080,
       });
-      
-      // Restore hidden state
-      exportRef.current.style.cssText = originalStyle;
       
       const link = document.createElement('a');
       link.download = `pu-major-match-${matches[0].major.key}.png`;
@@ -284,7 +277,7 @@ export default function ShareBadge({ matches }: ShareBadgeProps) {
         style={{
           position: 'fixed',
           left: '-9999px',
-          top: 0,
+          top: '-9999px',
           pointerEvents: 'none',
         }}
         aria-hidden="true"
