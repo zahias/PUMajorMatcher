@@ -175,9 +175,9 @@ export default function Results({ answers, onRetakeQuiz }: ResultsProps) {
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold mb-2">Share Your Results!</h3>
                 <p className="text-white/80 mb-6 max-w-xl mx-auto">
-                  Download a shareable badge of your top match and share it with friends on social media
+                  Download a shareable badge of your top matches and share it with friends on social media
                 </p>
-                <ShareBadge match={topMatches[0]} />
+                <ShareBadge matches={topMatches} />
               </CardContent>
             </Card>
           </motion.div>
