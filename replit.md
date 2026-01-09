@@ -1,12 +1,21 @@
-# Major Matching Quiz Application
+# PU Major Compass Application
 
 ## Overview
 
-This is a full-stack web application that helps students discover their ideal major at Phoenicia University through an interactive quiz system. The application uses a modern React frontend with a Node.js/Express backend, implementing a sophisticated matching algorithm to recommend university majors based on user preferences and interests.
+This is a full-stack web application called "PU Major Compass" that helps high school students discover their ideal undergraduate major at Phoenicia University through an interactive quiz assessment. The application uses a modern React frontend with a Node.js/Express backend, implementing a category-based matching algorithm to recommend university majors based on user responses.
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+
+## Recent Changes (January 2026)
+
+- **Renamed**: App renamed from "Major Matcher" to "Major Compass"
+- **New Quiz Format**: 15 multiple-choice questions with 6 options each (A-F)
+- **Simplified Algorithm**: Letter-counting system instead of weighted keywords
+- **User Info Collection**: Form collects name, phone, email, high school before quiz
+- **Disclaimers**: Instructions shown before quiz starts
+- **Category Mapping**: Each letter maps to a major category (A→Business, B→Communication, C→CS/Engineering, D→Architecture, E→Health Sciences, F→Law)
 
 ## System Architecture
 
@@ -14,7 +23,7 @@ Preferred communication style: Simple, everyday language.
 - **Framework**: React 18 with TypeScript
 - **Build Tool**: Vite for fast development and optimized builds
 - **UI Framework**: shadcn/ui components built on Radix UI primitives
-- **Styling**: Tailwind CSS with custom design system
+- **Styling**: Tailwind CSS with Phoenicia University branding (navy blue HSL 220, gold)
 - **State Management**: React Query (TanStack Query) for server state and local React state
 - **Animations**: Framer Motion for smooth transitions and micro-interactions
 
@@ -34,48 +43,68 @@ Preferred communication style: Simple, everyday language.
 ## Key Components
 
 ### Quiz System
-- **Interactive Questions**: Multiple choice and slider-based questions with weighted scoring
-- **Progress Tracking**: Visual progress indicators with question navigation
-- **Answer Persistence**: Session-based answer storage with ability to go back/forward
-- **Matching Algorithm**: Sophisticated keyword and weight-based major matching system
+- **User Info Form**: Collects full name, contact number, email, and high school
+- **Disclaimers Screen**: Shows instructions before quiz starts
+- **15 MCQ Questions**: Each with 6 options (A-F) mapping to major categories
+- **Progress Tracking**: Visual progress bar with question navigation
+- **Answer Persistence**: Local state with ability to go back/forward
 
-### Major Matching Engine
-- **Scoring System**: Multi-factor scoring based on keywords, interests, and weighted preferences
-- **Result Ranking**: Percentage-based matching with detailed reasoning
-- **Session Management**: Unique session IDs for tracking quiz attempts
-- **Result Storage**: Persistent storage of quiz results and top matches
+### Major Matching Algorithm
+- **Simple Counting**: Counts how many times each letter (A-F) was selected
+- **Category Mapping**:
+  - A → Business Administration
+  - B → Communication & Media
+  - C → Computer Science / Engineering
+  - D → Architecture
+  - E → Health Sciences (Nursing, Public Health, Speech Therapy)
+  - F → Law
+- **Percentage Calculation**: Based on count / total questions
+- **Reason Generation**: Personalized explanations based on matched category
+
+### Shareable Badge
+- **html2canvas Export**: Creates 1080x1350px shareable images
+- **Social Media Ready**: Designed for Instagram, Facebook, Twitter, WhatsApp
+- **Personalized**: Shows user's name and top 3 matches
 
 ### Data Models
-- **Majors**: University programs with metadata (name, college, description, careers, keywords)
-- **Quiz Results**: User answers, calculated matches, scores, and timestamps
-- **Validation**: Zod schemas for runtime type checking and API validation
-
-### UI Components
-- **Design System**: Consistent component library with Phoenicia University branding
-- **Responsive Design**: Mobile-first approach with adaptive layouts
-- **Accessibility**: ARIA-compliant components with keyboard navigation support
-- **Animations**: Smooth transitions between quiz states and result displays
+- **Major Categories**: Letter-based categories with name, icon, college, and majors array
+- **Quiz Answers**: Question ID and selected letter value
+- **User Info**: Full name, contact number, email, high school
+- **Quiz Results**: User info, answers, top matches, scores, timestamps
 
 ## Data Flow
 
 ### Quiz Flow
 1. User starts on hero page with university branding
-2. Quiz component loads questions sequentially with progress tracking
-3. Answers are validated and stored locally during quiz progression
-4. Upon completion, matching algorithm calculates compatibility scores
-5. Results are displayed with ranked major recommendations
-6. Quiz results are persisted to database with session tracking
+2. User fills out personal information form
+3. Disclaimers screen explains quiz instructions
+4. Quiz loads 15 questions sequentially with progress tracking
+5. Answers are stored locally during quiz progression
+6. Upon completion, algorithm counts letter selections
+7. Results show top matched categories ranked by count
+8. User can create and download shareable badge
+9. Quiz results are persisted to database
 
 ### API Data Flow
-- `GET /api/majors` - Fetches all available university majors
-- `GET /api/majors/:key` - Retrieves specific major details
-- `POST /api/quiz-results` - Saves completed quiz results
-- `GET /api/quiz-results/:sessionId` - Retrieves historical quiz results
+- `POST /api/quiz-results` - Saves completed quiz results with user info
 
 ### State Management
-- **Server State**: React Query manages API calls with caching and background updates
-- **Local State**: React hooks for quiz progression, current answers, and UI state
-- **Session State**: Temporary storage for quiz answers before final submission
+- **App State**: Controls view state (hero, quiz, results) and stores answers/userInfo
+- **Quiz State**: Manages current question, answers, and step (info, disclaimers, quiz)
+- **Local State**: React hooks for UI interactions
+
+## File Structure
+
+### Key Files
+- `client/src/lib/quizData.ts` - 15 questions and 6 major categories
+- `client/src/lib/matchingAlgorithm.ts` - Letter-counting algorithm
+- `client/src/components/UserInfoForm.tsx` - Pre-quiz user info collection
+- `client/src/components/QuizQuestion.tsx` - Question display with 6 options
+- `client/src/pages/quiz.tsx` - Quiz flow with info, disclaimers, and questions
+- `client/src/pages/results.tsx` - Results display with matches and badge
+- `client/src/components/ShareBadge.tsx` - Shareable badge generator
+- `client/src/App.tsx` - Main app with routing and state management
+- `client/src/components/Hero.tsx` - Landing page hero section
 
 ## External Dependencies
 
@@ -88,12 +117,8 @@ Preferred communication style: Simple, everyday language.
 - **Component Library**: Radix UI primitives for accessible base components
 - **Styling**: Tailwind CSS, class-variance-authority for component variants
 - **Animation**: Framer Motion for smooth transitions
-- **Forms**: React Hook Form with Zod resolvers for validation
-
-### Development Tools
-- **Validation**: Zod for schema validation and type safety
-- **Date Handling**: date-fns for date formatting and manipulation
-- **Utilities**: clsx for conditional class names, nanoid for unique IDs
+- **Badge Export**: html2canvas for shareable image generation
+- **Icons**: Lucide React for UI icons
 
 ## Deployment Strategy
 
