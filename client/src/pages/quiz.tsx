@@ -30,9 +30,7 @@ export default function Quiz({ onComplete }: QuizProps) {
   };
 
   const handleAnswer = (answer: QuizAnswer) => {
-    const newAnswers = answers.filter(a => a.questionId !== answer.questionId);
-    newAnswers.push(answer);
-    setAnswers(newAnswers);
+    setAnswers(prev => [...prev.filter(a => a.questionId !== answer.questionId), answer]);
   };
 
   const handleNext = () => {
