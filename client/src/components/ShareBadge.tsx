@@ -7,14 +7,16 @@ import type { MajorMatch } from "@/lib/matchingAlgorithm";
 
 interface ShareBadgeProps {
   matches: MajorMatch[];
+  userName: string;
 }
 
 interface BadgeContentProps {
   matches: MajorMatch[];
+  userName: string;
   size?: "preview" | "export";
 }
 
-function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
+function BadgeContent({ matches, userName, size = "preview" }: BadgeContentProps) {
   const scale = size === "export" ? 2.5 : 1;
   const width = size === "export" ? 1080 : 380;
   const height = size === "export" ? 1350 : 500;
@@ -68,7 +70,7 @@ function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
               color: 'rgba(255,255,255,0.7)', 
               fontSize: `${11 * scale}px`,
               margin: 0,
-            }}>Major Matcher</p>
+            }}>Major Compass</p>
           </div>
         </div>
 
@@ -82,7 +84,7 @@ function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
           marginBottom: `${12 * scale}px`,
         }}>
           <div style={{ fontSize: `${56 * scale}px`, marginBottom: `${10 * scale}px` }}>
-            {match.major.icon}
+            {match.category.icon}
           </div>
           
           <p style={{ 
@@ -92,7 +94,7 @@ function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
             letterSpacing: '0.1em',
             marginBottom: `${4 * scale}px`,
             margin: 0,
-          }}>My Perfect Match</p>
+          }}>{userName.split(' ')[0]}'s Perfect Match</p>
           
           <h2 style={{ 
             fontSize: `${18 * scale}px`, 
@@ -102,7 +104,7 @@ function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
             lineHeight: 1.2,
             margin: `0 0 ${4 * scale}px 0`,
           }}>
-            {match.major.name}
+            {match.category.name}
           </h2>
           
           <p style={{ 
@@ -112,7 +114,7 @@ function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
             marginBottom: `${12 * scale}px`,
             margin: `0 0 ${12 * scale}px 0`,
           }}>
-            {match.major.college}
+            {match.category.college}
           </p>
 
           <div style={{
@@ -157,7 +159,7 @@ function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
             <div style={{ display: 'flex', gap: `${6 * scale}px`, flexDirection: 'column' }}>
               {matches.slice(1, 3).map((m, idx) => (
                 <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: `${6 * scale}px` }}>
-                  <span style={{ fontSize: `${18 * scale}px` }}>{m.major.icon}</span>
+                  <span style={{ fontSize: `${18 * scale}px` }}>{m.category.icon}</span>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <p style={{ 
                       fontSize: `${9 * scale}px`, 
@@ -166,7 +168,7 @@ function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap',
-                    }}>{m.major.name}</p>
+                    }}>{m.category.name}</p>
                     <p style={{ 
                       fontSize: `${8 * scale}px`, 
                       color: '#f5c842', 
@@ -202,7 +204,7 @@ function BadgeContent({ matches, size = "preview" }: BadgeContentProps) {
   );
 }
 
-export default function ShareBadge({ matches }: ShareBadgeProps) {
+export default function ShareBadge({ matches, userName }: ShareBadgeProps) {
   const exportRef = useRef<HTMLDivElement>(null);
   const [isDownloading, setIsDownloading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -225,7 +227,7 @@ export default function ShareBadge({ matches }: ShareBadgeProps) {
       });
       
       const link = document.createElement('a');
-      link.download = `pu-major-match-${matches[0].major.key}.png`;
+      link.download = `pu-major-compass-${matches[0].category.letter}.png`;
       link.href = canvas.toDataURL('image/png', 1.0);
       link.click();
     } catch (error) {
@@ -248,12 +250,12 @@ export default function ShareBadge({ matches }: ShareBadgeProps) {
       </DialogTrigger>
       <DialogContent className="max-w-[95vw] sm:max-w-lg mx-auto max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-[hsl(220,30%,15%)] text-lg">Your Major Match Badge</DialogTitle>
+          <DialogTitle className="text-[hsl(220,30%,15%)] text-lg">Your Major Compass Badge</DialogTitle>
         </DialogHeader>
         
         <div className="flex flex-col items-center gap-4 py-2">
           <div className="rounded-2xl shadow-2xl w-full max-w-[380px] mx-auto">
-            <BadgeContent matches={matches} size="preview" />
+            <BadgeContent matches={matches} userName={userName} size="preview" />
           </div>
 
           <Button
@@ -282,7 +284,7 @@ export default function ShareBadge({ matches }: ShareBadgeProps) {
         }}
         aria-hidden="true"
       >
-        <BadgeContent matches={matches} size="export" />
+        <BadgeContent matches={matches} userName={userName} size="export" />
       </div>
     </Dialog>
   );

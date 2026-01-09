@@ -1,139 +1,104 @@
-import type { Major } from "@shared/schema";
-import type { QuizQuestion } from "./quizData";
+import { majorCategories, type OptionLetter, type MajorCategory } from "./quizData";
 
 export interface QuizAnswer {
   questionId: number;
-  value: string | number;
-  type: 'multiple-choice' | 'slider';
-  weight?: number;
+  value: OptionLetter;
+}
+
+export interface UserInfo {
+  fullName: string;
+  contactNumber: string;
+  email: string;
+  highSchool: string;
 }
 
 export interface MajorMatch {
-  major: Major;
-  score: number;
+  category: MajorCategory;
+  count: number;
   matchPercentage: number;
   reasons: string[];
 }
 
-export function calculateMatches(
-  answers: QuizAnswer[],
-  questions: QuizQuestion[],
-  majors: Major[]
-): MajorMatch[] {
-  // Initialize scores for each major
-  const scores: Record<string, number> = {};
-  const matchedKeywords: Record<string, Set<string>> = {};
-  
-  majors.forEach(major => {
-    scores[major.key] = 0;
-    matchedKeywords[major.key] = new Set();
+export function calculateMatches(answers: QuizAnswer[]): MajorMatch[] {
+  const counts: Record<OptionLetter, number> = {
+    'A': 0,
+    'B': 0,
+    'C': 0,
+    'D': 0,
+    'E': 0,
+    'F': 0
+  };
+
+  answers.forEach(answer => {
+    counts[answer.value]++;
   });
 
-  // Calculate scores based on answers
-  answers.forEach((answer, index) => {
-    const question = questions[index];
-    if (!question) return;
+  const totalQuestions = answers.length;
 
-    if (answer.type === 'multiple-choice' && answer.weight) {
-      // Direct keyword matching for multiple choice
-      majors.forEach(major => {
-        if (major.keywords.includes(answer.value as string)) {
-          scores[major.key] += answer.weight!;
-          matchedKeywords[major.key].add(answer.value as string);
-        }
-      });
-    } else if (answer.type === 'slider' && question.weight_map) {
-      // Handle slider scoring based on weight_map
-      const value = answer.value as number;
-      Object.keys(question.weight_map).forEach(range => {
-        const [min, max] = range.split('-').map(Number);
-        if (value >= min && value <= max) {
-          question.weight_map![range].forEach(scoreItem => {
-            majors.forEach(major => {
-              if (major.keywords.includes(scoreItem.value)) {
-                scores[major.key] += scoreItem.weight;
-                matchedKeywords[major.key].add(scoreItem.value);
-              }
-            });
-          });
-        }
-      });
-    }
-  });
+  const matches: MajorMatch[] = majorCategories.map(category => {
+    const count = counts[category.letter];
+    const matchPercentage = Math.round((count / totalQuestions) * 100);
+    const reasons = generateMatchReasons(category, count, totalQuestions);
 
-  // Calculate max score for percentage calculation
-  const maxScore = Math.max(...Object.values(scores));
-  const minScore = Math.min(...Object.values(scores));
-  const scoreRange = maxScore - minScore || 1;
-
-  // Create match results with reasons
-  const matches: MajorMatch[] = majors.map(major => {
-    const score = scores[major.key];
-    const matchPercentage = Math.round(((score - minScore) / scoreRange) * 100);
-    
-    // Generate reasons based on matched keywords
-    const reasons = generateMatchReasons(major, matchedKeywords[major.key]);
-    
     return {
-      major,
-      score,
-      matchPercentage: Math.max(matchPercentage, 10), // Minimum 10% to avoid 0%
+      category,
+      count,
+      matchPercentage,
       reasons
     };
   });
 
-  // Sort by score descending
-  return matches.sort((a, b) => b.score - a.score);
+  return matches.sort((a, b) => b.count - a.count);
 }
 
-function generateMatchReasons(major: Major, matchedKeywords: Set<string>): string[] {
+function generateMatchReasons(category: MajorCategory, count: number, total: number): string[] {
   const reasons: string[] = [];
-  
-  const keywordReasons: Record<string, string> = {
-    'technology': 'You show strong interest in technology and digital solutions',
-    'creative': 'Your creative nature aligns well with this field',
-    'helping': 'Your desire to help others matches this career path',
-    'business': 'Your business mindset fits well with this program',
-    'analytical': 'Your analytical thinking skills are perfect for this field',
-    'design': 'Your design interests align with this program',
-    'healthcare': 'Your interest in healthcare makes this a great fit',
-    'research': 'Your research interests match this academic path',
-    'communication': 'Your communication skills are valuable in this field',
-    'leadership': 'Your leadership qualities suit this career path',
-    'engineering': 'Your technical and problem-solving skills fit engineering',
-    'science': 'Your scientific interests align with this program',
-    'innovation': 'Your innovative mindset matches this field',
-    'people-oriented': 'Your people skills are essential for this career',
-    'hands-on': 'Your practical approach suits this hands-on field'
+  const percentage = Math.round((count / total) * 100);
+
+  const categoryReasons: Record<OptionLetter, string[]> = {
+    'A': [
+      'You show strong leadership and organizational abilities',
+      'Your decision-making skills align well with business careers',
+      'You thrive in structured, goal-oriented environments'
+    ],
+    'B': [
+      'You have excellent communication and creative expression skills',
+      'Your ability to influence and connect with audiences is notable',
+      'You enjoy creating content and sharing ideas'
+    ],
+    'C': [
+      'Your analytical and logical thinking skills are exceptional',
+      'You enjoy solving complex technical problems',
+      'You have a strong interest in technology and systems'
+    ],
+    'D': [
+      'Your visual imagination and design skills stand out',
+      'You enjoy creating and visualizing spaces',
+      'Your creative approach to problem-solving is evident'
+    ],
+    'E': [
+      'You have a genuine passion for helping others',
+      'Your empathy and patience make you well-suited for healthcare',
+      'You care deeply about people\'s wellbeing'
+    ],
+    'F': [
+      'Your critical thinking and judgment skills are strong',
+      'You enjoy analyzing issues and defending positions',
+      'Your interest in justice and fairness is evident'
+    ]
   };
 
-  // Add reasons based on matched keywords
-  Array.from(matchedKeywords).forEach(keyword => {
-    if (keywordReasons[keyword]) {
-      reasons.push(keywordReasons[keyword]);
-    }
-  });
-
-  // Add program-specific reasons
-  if (major.key === 'computer-science' && matchedKeywords.has('technology')) {
-    reasons.push('The program\'s focus on AI and software development matches your interests');
-  }
-  if (major.key === 'architecture' && matchedKeywords.has('creative')) {
-    reasons.push('The creative design aspects appeal to your artistic nature');
-  }
-  if (major.key === 'nursing' && matchedKeywords.has('helping')) {
-    reasons.push('Your compassionate nature is perfect for healthcare');
-  }
-  if (major.key === 'business-administration' && matchedKeywords.has('leadership')) {
-    reasons.push('Your leadership skills align with business management roles');
+  if (percentage >= 40) {
+    reasons.push(...categoryReasons[category.letter].slice(0, 3));
+  } else if (percentage >= 25) {
+    reasons.push(...categoryReasons[category.letter].slice(0, 2));
+  } else if (percentage > 0) {
+    reasons.push(categoryReasons[category.letter][0]);
+  } else {
+    reasons.push('This field could offer interesting opportunities for growth');
   }
 
-  // Ensure at least one reason
-  if (reasons.length === 0) {
-    reasons.push('This program offers diverse career opportunities that may interest you');
-  }
-
-  return reasons.slice(0, 3); // Limit to 3 reasons
+  return reasons;
 }
 
 export function generateSessionId(): string {

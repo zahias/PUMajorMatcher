@@ -7,31 +7,35 @@ import Hero from "@/components/Hero";
 import Quiz from "@/pages/quiz";
 import Results from "@/pages/results";
 import puLogoUrl from "@assets/images-1_1767097536565.jpg";
-import type { QuizAnswer } from "@/lib/matchingAlgorithm";
+import type { QuizAnswer, UserInfo } from "@/lib/matchingAlgorithm";
 
 type AppState = 'hero' | 'quiz' | 'results';
 
 function App() {
   const [currentState, setCurrentState] = useState<AppState>('hero');
   const [quizAnswers, setQuizAnswers] = useState<QuizAnswer[]>([]);
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
 
   const handleStartQuiz = () => {
     setCurrentState('quiz');
   };
 
-  const handleQuizComplete = (answers: QuizAnswer[]) => {
+  const handleQuizComplete = (answers: QuizAnswer[], info: UserInfo) => {
     setQuizAnswers(answers);
+    setUserInfo(info);
     setCurrentState('results');
     window.scrollTo(0, 0);
   };
 
   const handleRetakeQuiz = () => {
     setQuizAnswers([]);
+    setUserInfo(null);
     setCurrentState('quiz');
   };
 
   const handleBackToHome = () => {
     setQuizAnswers([]);
+    setUserInfo(null);
     setCurrentState('hero');
   };
 
@@ -50,7 +54,7 @@ function App() {
                     className="h-10 w-auto"
                   />
                   <span className="ml-3 text-xl font-bold text-gray-800">
-                    PU Major Matcher
+                    PU Major Compass
                   </span>
                 </div>
                 <div className="hidden md:flex items-center space-x-6">
@@ -86,8 +90,8 @@ function App() {
           {/* Main Content */}
           {currentState === 'hero' && <Hero onStartQuiz={handleStartQuiz} />}
           {currentState === 'quiz' && <Quiz onComplete={handleQuizComplete} />}
-          {currentState === 'results' && (
-            <Results answers={quizAnswers} onRetakeQuiz={handleRetakeQuiz} />
+          {currentState === 'results' && userInfo && (
+            <Results answers={quizAnswers} userInfo={userInfo} onRetakeQuiz={handleRetakeQuiz} />
           )}
 
           {/* Footer */}
