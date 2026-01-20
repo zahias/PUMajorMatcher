@@ -22,7 +22,7 @@ Your answers will help identify the PU undergraduate major that best matches you
  
  
 1. Which activity do you enjoy the most?
-A. Organizing people, plans, or projects
+A. Planning and managing projects or activities
 B. Writing, speaking, or creating media content
 C. Solving technical or logical problems
 D. Designing or visualizing ideas
@@ -30,7 +30,7 @@ E. Caring for or supporting people’s health
 F. Debating issues or defending opinions
  
 2. Which school subject do you enjoy most?
-A. Business studies or economics
+A. Economics or mathematics
 B. English, media, or languages
 C. Mathematics, physics, or computer science
 D. Art, design, or technical drawing
@@ -38,7 +38,7 @@ E. Biology or health sciences
 F. Civics, history, or social studies
  
 3. In a group project, you usually:
-A. Lead and organize tasks
+A. Take the lead in assigning tasks
 B. Present ideas and communicate
 C. Handle technical or analytical work
 D. Create visuals or designs
@@ -46,7 +46,7 @@ E. Support team members’ wellbeing
 F. Analyze rules, instructions, or arguments
  
 4. What kind of problems interest you the most?
-A. How to improve a business or organization
+A. How to improve processes, plans, or organizations
 B. How to communicate ideas effectively
 C. How systems or technology work
 D. How spaces or designs can be improved
@@ -70,7 +70,7 @@ E. Empathy and patience
 F. Critical thinking and judgment
  
 7. Which statement best describes you?
-A. I enjoy managing people and responsibilities
+A. I enjoy taking responsibility and making decisions
 B. I enjoy influencing opinions and audiences
 C. I enjoy understanding systems and technology
 D. I enjoy creating visual concepts
@@ -78,7 +78,7 @@ E. I enjoy helping people feel better
 F. I enjoy analyzing issues and arguments
  
 8. Which task would you enjoy the most?
-A. Managing a project or business plan
+A. Managing a project or plan
 B. Creating a presentation or media campaign
 C. Building or programming something
 D. Designing a structure or space
@@ -86,7 +86,7 @@ E. Assisting patients or communities
 F. Studying a case or legal situation
  
 9. You feel most confident when you are:
-A. Making decisions
+A. Making decisions and taking initiatives
 B. Speaking or writing clearly
 C. Working with numbers or systems
 D. Sketching or visualizing ideas
@@ -102,7 +102,7 @@ E. Healthcare
 F. Law and legal studies
  
 11. When facing a challenge, you prefer to:
-A. Plan and organize solutions
+A. Plan and coordinate solutions
 B. Communicate and persuade
 C. Analyze and test solutions
 D. Redesign and improve visually
@@ -118,7 +118,7 @@ E. Caring and people-focused
 F. Formal and rule-based
  
 13. What motivates you the most?
-A. Achievement and leadership
+A. Expressing ideas and influencing others
 B. Expression and influence
 C. Innovation and problem-solving
 D. Creativity and design
@@ -126,7 +126,7 @@ E. Helping others
 F. Justice and fairness
  
 14. Your future work should mainly involve:
-A. Managing and organizing
+A. Managing and planning projects
 B. Communicating ideas
 C. Solving technical problems
 D. Designing and planning
@@ -134,7 +134,7 @@ E. Caring for people
 F. Applying laws and regulations
  
 15. Which statement fits you best?
-A. I want to lead or manage organizations
+A. I want to lead or manage projects or organizations
 B. I want to influence people through communication
 C. I want to work with technology or engineering
 D. I want to design buildings or spaces
