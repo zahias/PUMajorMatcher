@@ -14,7 +14,7 @@ export const quizQuestions: QuizQuestion[] = [
     id: 1,
     question: "Which activity do you enjoy the most?",
     options: [
-      { text: "Organizing people, plans, or projects", value: "A" },
+      { text: "Planning and managing projects or activities", value: "A" },
       { text: "Writing, speaking, or creating media content", value: "B" },
       { text: "Solving technical or logical problems", value: "C" },
       { text: "Designing or visualizing ideas", value: "D" },
@@ -26,7 +26,7 @@ export const quizQuestions: QuizQuestion[] = [
     id: 2,
     question: "Which school subject do you enjoy most?",
     options: [
-      { text: "Business studies or economics", value: "A" },
+      { text: "Economics or mathematics", value: "A" },
       { text: "English, media, or languages", value: "B" },
       { text: "Mathematics, physics, or computer science", value: "C" },
       { text: "Art, design, or technical drawing", value: "D" },
@@ -38,7 +38,7 @@ export const quizQuestions: QuizQuestion[] = [
     id: 3,
     question: "In a group project, you usually:",
     options: [
-      { text: "Lead and organize tasks", value: "A" },
+      { text: "Take the lead in assigning tasks", value: "A" },
       { text: "Present ideas and communicate", value: "B" },
       { text: "Handle technical or analytical work", value: "C" },
       { text: "Create visuals or designs", value: "D" },
@@ -50,7 +50,7 @@ export const quizQuestions: QuizQuestion[] = [
     id: 4,
     question: "What kind of problems interest you the most?",
     options: [
-      { text: "How to improve a business or organization", value: "A" },
+      { text: "How to improve processes, plans, or organizations", value: "A" },
       { text: "How to communicate ideas effectively", value: "B" },
       { text: "How systems or technology work", value: "C" },
       { text: "How spaces or designs can be improved", value: "D" },
@@ -86,7 +86,7 @@ export const quizQuestions: QuizQuestion[] = [
     id: 7,
     question: "Which statement best describes you?",
     options: [
-      { text: "I enjoy managing people and responsibilities", value: "A" },
+      { text: "I enjoy taking responsibility and making decisions", value: "A" },
       { text: "I enjoy influencing opinions and audiences", value: "B" },
       { text: "I enjoy understanding systems and technology", value: "C" },
       { text: "I enjoy creating visual concepts", value: "D" },
@@ -98,7 +98,7 @@ export const quizQuestions: QuizQuestion[] = [
     id: 8,
     question: "Which task would you enjoy the most?",
     options: [
-      { text: "Managing a project or business plan", value: "A" },
+      { text: "Managing a project or plan", value: "A" },
       { text: "Creating a presentation or media campaign", value: "B" },
       { text: "Building or programming something", value: "C" },
       { text: "Designing a structure or space", value: "D" },
@@ -110,7 +110,7 @@ export const quizQuestions: QuizQuestion[] = [
     id: 9,
     question: "You feel most confident when you are:",
     options: [
-      { text: "Making decisions", value: "A" },
+      { text: "Making decisions and taking initiatives", value: "A" },
       { text: "Speaking or writing clearly", value: "B" },
       { text: "Working with numbers or systems", value: "C" },
       { text: "Sketching or visualizing ideas", value: "D" },
@@ -134,7 +134,7 @@ export const quizQuestions: QuizQuestion[] = [
     id: 11,
     question: "When facing a challenge, you prefer to:",
     options: [
-      { text: "Plan and organize solutions", value: "A" },
+      { text: "Plan and coordinate solutions", value: "A" },
       { text: "Communicate and persuade", value: "B" },
       { text: "Analyze and test solutions", value: "C" },
       { text: "Redesign and improve visually", value: "D" },
@@ -158,7 +158,7 @@ export const quizQuestions: QuizQuestion[] = [
     id: 13,
     question: "What motivates you the most?",
     options: [
-      { text: "Achievement and leadership", value: "A" },
+      { text: "Expressing ideas and influencing others", value: "A" },
       { text: "Expression and influence", value: "B" },
       { text: "Innovation and problem-solving", value: "C" },
       { text: "Creativity and design", value: "D" },
@@ -170,7 +170,7 @@ export const quizQuestions: QuizQuestion[] = [
     id: 14,
     question: "Your future work should mainly involve:",
     options: [
-      { text: "Managing and organizing", value: "A" },
+      { text: "Managing and planning projects", value: "A" },
       { text: "Communicating ideas", value: "B" },
       { text: "Solving technical problems", value: "C" },
       { text: "Designing and planning", value: "D" },
@@ -182,7 +182,7 @@ export const quizQuestions: QuizQuestion[] = [
     id: 15,
     question: "Which statement fits you best?",
     options: [
-      { text: "I want to lead or manage organizations", value: "A" },
+      { text: "I want to lead or manage projects or organizations", value: "A" },
       { text: "I want to influence people through communication", value: "B" },
       { text: "I want to work with technology or engineering", value: "C" },
       { text: "I want to design buildings or spaces", value: "D" },
